@@ -24,8 +24,8 @@ for i in range(len(img_gray[0])):
 		if img_gray[j][i]<100:
 			cnt = pixel-1
 			cv2.circle(lastimage, (i, j), 1, 0, thickness=-1)
-			x.append(i)
-			y.append(j)
+			x.append(float(i))
+			y.append(float(j))
 cv2.imshow("soblex+y",lastimage)
 
 
@@ -34,3 +34,5 @@ if cv2.waitKey(0) & 0xff == 27:
 
 print(x)
 print(y)
+print(len(x))
+print(len(y))
