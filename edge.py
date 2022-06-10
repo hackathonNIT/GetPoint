@@ -64,10 +64,11 @@ class UnionFind():
 
 
 
-input = "img/z1.png"
+input = "img/kao.png"
 
 graying = cv2.imread(input, cv2.IMREAD_GRAYSCALE)
-detedge = cv2.Canny(graying, 100, 1200)
+graying_flip =cv2.flip(graying, 0)
+detedge = cv2.Canny(graying_flip, 100, 1200)
 
 
 
@@ -177,10 +178,7 @@ for i in ut.roots():
 	dfs(d2[i]%len(detedge[0]),int(d2[i]/len(detedge[0])),100)
 
 
-print("y1=np.array(",point_tree_y,")")
-#print(len(point_tree_y))
 
-print("x=np.array(",point_tree_x,")")
 	
 
 
@@ -191,6 +189,29 @@ print("x=np.array(",point_tree_x,")")
 # 			detedge[i][j]=color[ut.find(d[i*len(detedge[0])+j])]
 
 #ris=cv2.resize(detedge,dsize=(300,300))
+
+
+xplus= {i:0 for i in range(len(detedge[0]))}
+
+for i in range(len(point_tree_x)):
+	point_tree_x[i]=point_tree_x[i]+xplus[int(point_tree_x[i])]
+	xplus[int(point_tree_x[i])]=xplus[int(point_tree_x[i])]+0.001
+
+
+
+
+x_sub=[]
+y_sub=[]
+for i in range(len(point_tree_x)):
+	if i%5==0:
+		x_sub.append(point_tree_x[i])
+		y_sub.append(point_tree_y[i])
+
+
+print("y1=np.array(",y_sub,")")
+#print(len(point_tree_y))
+
+print("x=np.array(",x_sub,")")
 
 cv2.imshow("fas", detedge)
 # print(ans)
