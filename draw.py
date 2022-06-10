@@ -24,7 +24,7 @@ background_color="White",
 height= 150,
 key="canvas",
 )
-
+print("fafa")
 # Do something interesting with the image data
 if canvas_result.image_data is not None:
     st.image(canvas_result.image_data)
